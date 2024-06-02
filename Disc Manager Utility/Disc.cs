@@ -221,6 +221,7 @@ namespace Disc_Manager_Utility
                 ShowNode(childNode, treeNode.Nodes,tv, level + 1);
             }
         }
+
         //make a fast search algorithm that will return the node whose name is the same as the search string
         public TreeNode<FileSystemItem>? SearchNode(TreeNode<FileSystemItem>? node, string search)
         {

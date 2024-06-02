@@ -6,10 +6,10 @@ namespace Disc_Manager_Utility
 {
     public partial class Form1 : Form
     {
-        private List<Disc> _discs;
+        private List<Disc?> _discs;
         private readonly List<DriveInfo> _systemDiscs = GetAllDiscs();
         private bool _useDate = true;
-        private Disc _currentDisc;
+        private Disc? _currentDisc;
         private int _discCounter = 0;
 
         public Form1()
@@ -96,7 +96,8 @@ namespace Disc_Manager_Utility
             return DriveInfo.GetDrives().ToList();
         }
 
-        private async Task<List<Disc>> DeserializeDiscsAsync()
+
+        private static async Task<List<Disc?>?> DeserializeDiscsAsync()
         {
             if (!File.Exists("discs.json")) return null;
 
@@ -109,15 +110,9 @@ namespace Disc_Manager_Utility
             return JsonConvert.DeserializeObject<List<Disc>>(json);
         }
 
-        private void SerializeDiscs(List<Disc> discs)
+        private static void SerializeDiscsWithProgress(IReadOnlyList<Disc?> discs)
         {
-            var json = JsonConvert.SerializeObject(discs, Formatting.Indented);
-            File.WriteAllText("discs.json", json);
-        }
-
-        private void SerializeDiscsWithProgress(List<Disc> discs)
-        {
-            int discCount = discs.Count;
+            var discCount = discs.Count;
 
             using var writer = new StreamWriter("discs.json");
             writer.WriteLine("[");
@@ -138,7 +133,7 @@ namespace Disc_Manager_Utility
             // Clearing the tree view
             treeView1.Nodes.Clear();
             // Getting the selected disc
-            Disc disc = _discs.Find(disc => disc.Name == comboBox1.SelectedItem?.ToString());
+            var disc = _discs.Find(disc => disc?.Name == comboBox1.SelectedItem?.ToString());
             // Showing the disc
             progressBar1.Visible = true;
             progressBar1.Style = ProgressBarStyle.Marquee;
@@ -161,7 +156,7 @@ namespace Disc_Manager_Utility
             }
         }
 
-        private async void load_Disc(Disc disc)
+        private async void load_Disc(Disc? disc)
         {
             Invoke(new MethodInvoker(delegate
             {
@@ -323,8 +318,8 @@ namespace Disc_Manager_Utility
             progressBar1.MarqueeAnimationSpeed = 30;
             progressBar1.Visible = true;
 
-            // Deserialize discs
-            var discsTask = DeserializeDiscsAsync();
+            // Deserialize discs asynchronously on a background thread
+            var discsTask = Task.Run(DeserializeDiscsAsync);
             var discs = await discsTask;
 
             // Hide loading indicators
@@ -335,7 +330,7 @@ namespace Disc_Manager_Utility
             // Process deserialized discs
             if (discs == null)
             {
-                _discs = new List<Disc>();
+                _discs = new List<Disc?>();
                 _discCounter = 0;
             }
             else
@@ -391,6 +386,28 @@ namespace Disc_Manager_Utility
             progressBar1.Style = ProgressBarStyle.Marquee;
             progressBar1.MarqueeAnimationSpeed = 30;
             await Task.Run(() => SerializeDiscsWithProgress(_discs));
+            label7.Visible = false;
+            progressBar1.Visible = false;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if(_currentDisc == null)
+            {
+                MessageBox.Show("Please select a disc to delete.");
+                return;
+            }
+            _discs.Remove(_currentDisc);
+            comboBox1.Items.Remove(_currentDisc.Name);
+            _currentDisc = null;
+            treeView1.Nodes.Clear();
+            comboBox4.Visible = false;
+            label6.Visible = false;
+            // Serialize the discs to XML in a background task
+            label7.Visible = true;
+            progressBar1.Style = ProgressBarStyle.Marquee;
+            progressBar1.MarqueeAnimationSpeed = 30;
+            SerializeDiscsWithProgress(_discs);
             label7.Visible = false;
             progressBar1.Visible = false;
         }

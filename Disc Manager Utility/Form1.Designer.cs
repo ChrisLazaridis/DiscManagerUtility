@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            panel2 = new Panel();
+            dataGridView1 = new DataGridView();
             panel1 = new Panel();
             progressBar2 = new ProgressBar();
             checkBox1 = new CheckBox();
@@ -40,8 +43,10 @@
             label1 = new Label();
             button1 = new Button();
             textBox1 = new TextBox();
-            dataGridView1 = new DataGridView();
             tabPage2 = new TabPage();
+            panel4 = new Panel();
+            treeView1 = new TreeView();
+            panel3 = new Panel();
             label6 = new Label();
             comboBox4 = new ComboBox();
             label9 = new Label();
@@ -55,12 +60,15 @@
             label5 = new Label();
             label4 = new Label();
             comboBox1 = new ComboBox();
-            treeView1 = new TreeView();
+            button3 = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
-            panel1.SuspendLayout();
+            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel1.SuspendLayout();
             tabPage2.SuspendLayout();
+            panel4.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -76,8 +84,8 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(panel2);
             tabPage1.Controls.Add(panel1);
-            tabPage1.Controls.Add(dataGridView1);
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
@@ -85,6 +93,34 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Search";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(dataGridView1);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(208, 3);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(581, 416);
+            panel2.TabIndex = 2;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 0);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowTemplate.Resizable = DataGridViewTriState.True;
+            dataGridView1.Size = new Size(581, 416);
+            dataGridView1.TabIndex = 1;
             // 
             // panel1
             // 
@@ -183,34 +219,10 @@
             textBox1.Size = new Size(185, 23);
             textBox1.TabIndex = 10;
             // 
-            // dataGridView1
-            // 
-            dataGridView1.AllowUserToOrderColumns = true;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(3, 3);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(786, 416);
-            dataGridView1.TabIndex = 0;
-            // 
             // tabPage2
             // 
-            tabPage2.Controls.Add(label6);
-            tabPage2.Controls.Add(comboBox4);
-            tabPage2.Controls.Add(label9);
-            tabPage2.Controls.Add(label8);
-            tabPage2.Controls.Add(comboBox3);
-            tabPage2.Controls.Add(label7);
-            tabPage2.Controls.Add(progressBar1);
-            tabPage2.Controls.Add(button2);
-            tabPage2.Controls.Add(textBox2);
-            tabPage2.Controls.Add(comboBox2);
-            tabPage2.Controls.Add(label5);
-            tabPage2.Controls.Add(label4);
-            tabPage2.Controls.Add(comboBox1);
-            tabPage2.Controls.Add(treeView1);
+            tabPage2.Controls.Add(panel4);
+            tabPage2.Controls.Add(panel3);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -219,13 +231,52 @@
             tabPage2.Text = "Disc Management";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // panel4
+            // 
+            panel4.Controls.Add(treeView1);
+            panel4.Dock = DockStyle.Fill;
+            panel4.Location = new Point(269, 3);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(520, 416);
+            panel4.TabIndex = 2;
+            // 
+            // treeView1
+            // 
+            treeView1.Dock = DockStyle.Fill;
+            treeView1.Location = new Point(0, 0);
+            treeView1.Name = "treeView1";
+            treeView1.Size = new Size(520, 416);
+            treeView1.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(button3);
+            panel3.Controls.Add(label6);
+            panel3.Controls.Add(comboBox4);
+            panel3.Controls.Add(label9);
+            panel3.Controls.Add(label8);
+            panel3.Controls.Add(comboBox3);
+            panel3.Controls.Add(label7);
+            panel3.Controls.Add(progressBar1);
+            panel3.Controls.Add(button2);
+            panel3.Controls.Add(textBox2);
+            panel3.Controls.Add(comboBox2);
+            panel3.Controls.Add(label5);
+            panel3.Controls.Add(label4);
+            panel3.Controls.Add(comboBox1);
+            panel3.Dock = DockStyle.Left;
+            panel3.Location = new Point(3, 3);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(266, 416);
+            panel3.TabIndex = 1;
+            // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(135, 45);
+            label6.Location = new Point(132, 52);
             label6.Name = "label6";
             label6.Size = new Size(47, 15);
-            label6.TabIndex = 14;
+            label6.TabIndex = 27;
             label6.Text = "Sort By:";
             label6.Visible = false;
             // 
@@ -233,119 +284,121 @@
             // 
             comboBox4.FormattingEnabled = true;
             comboBox4.Items.AddRange(new object[] { "Default", "Alphabetical", "Date" });
-            comboBox4.Location = new Point(135, 63);
+            comboBox4.Location = new Point(132, 70);
             comboBox4.Name = "comboBox4";
             comboBox4.Size = new Size(121, 23);
-            comboBox4.TabIndex = 13;
+            comboBox4.TabIndex = 26;
             comboBox4.Visible = false;
             comboBox4.SelectedIndexChanged += comboBox4_SelectedIndexChanged;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(178, 45);
+            label9.Location = new Point(175, 52);
             label9.Name = "label9";
             label9.Size = new Size(76, 15);
-            label9.TabIndex = 12;
+            label9.TabIndex = 25;
             label9.Text = "Loading Files";
             label9.Visible = false;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(8, 3);
+            label8.Location = new Point(5, 10);
             label8.Name = "label8";
             label8.Size = new Size(47, 15);
-            label8.TabIndex = 11;
+            label8.TabIndex = 24;
             label8.Text = "Sort By:";
             // 
             // comboBox3
             // 
             comboBox3.FormattingEnabled = true;
             comboBox3.Items.AddRange(new object[] { "Default", "Alphabetical", "Date" });
-            comboBox3.Location = new Point(8, 19);
+            comboBox3.Location = new Point(5, 26);
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(121, 23);
-            comboBox3.TabIndex = 10;
+            comboBox3.TabIndex = 23;
             comboBox3.SelectedIndexChanged += comboBox3_SelectedIndexChanged;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(8, 298);
+            label7.Location = new Point(5, 287);
             label7.Name = "label7";
             label7.Size = new Size(94, 15);
-            label7.TabIndex = 9;
+            label7.TabIndex = 22;
             label7.Text = "Saving Changes:";
             label7.Visible = false;
             // 
             // progressBar1
             // 
-            progressBar1.Location = new Point(8, 298);
+            progressBar1.Location = new Point(5, 305);
             progressBar1.Name = "progressBar1";
             progressBar1.Size = new Size(100, 23);
-            progressBar1.TabIndex = 7;
+            progressBar1.TabIndex = 21;
             progressBar1.Visible = false;
             // 
             // button2
             // 
-            button2.Location = new Point(8, 249);
+            button2.Location = new Point(5, 256);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
-            button2.TabIndex = 6;
+            button2.TabIndex = 20;
             button2.Text = "Add";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(8, 182);
+            textBox2.Location = new Point(5, 189);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(100, 23);
-            textBox2.TabIndex = 5;
+            textBox2.TabIndex = 19;
             // 
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(6, 211);
+            comboBox2.Location = new Point(3, 218);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(121, 23);
-            comboBox2.TabIndex = 4;
+            comboBox2.TabIndex = 18;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(16, 141);
+            label5.Location = new Point(13, 148);
             label5.Name = "label5";
             label5.Size = new Size(119, 15);
-            label5.TabIndex = 3;
+            label5.TabIndex = 17;
             label5.Text = "Add New Disc Name:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(8, 45);
+            label4.Location = new Point(5, 52);
             label4.Name = "label4";
             label4.Size = new Size(66, 15);
-            label4.TabIndex = 2;
+            label4.TabIndex = 16;
             label4.Text = "Select Disc:";
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(8, 63);
+            comboBox1.Location = new Point(5, 70);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 1;
+            comboBox1.TabIndex = 15;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
-            // treeView1
+            // button3
             // 
-            treeView1.Dock = DockStyle.Right;
-            treeView1.Location = new Point(363, 3);
-            treeView1.Name = "treeView1";
-            treeView1.Size = new Size(426, 416);
-            treeView1.TabIndex = 0;
+            button3.Location = new Point(3, 99);
+            button3.Name = "button3";
+            button3.Size = new Size(75, 23);
+            button3.TabIndex = 28;
+            button3.Text = "Delete";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // Form1
             // 
@@ -358,11 +411,14 @@
             Load += Form1_Load;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             tabPage2.ResumeLayout(false);
-            tabPage2.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -371,21 +427,6 @@
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
-        private DataGridView dataGridView1;
-        private Button button2;
-        private TextBox textBox2;
-        private ComboBox comboBox2;
-        private Label label5;
-        private Label label4;
-        private ComboBox comboBox1;
-        private TreeView treeView1;
-        private ProgressBar progressBar1;
-        private Label label6;
-        private Label label7;
-        private Label label8;
-        private ComboBox comboBox3;
-        private Label label9;
-        private ComboBox comboBox4;
         private Panel panel1;
         private ProgressBar progressBar2;
         private CheckBox checkBox1;
@@ -396,5 +437,24 @@
         private Label label1;
         private Button button1;
         private TextBox textBox1;
+        private Panel panel2;
+        private DataGridView dataGridView1;
+        private Panel panel3;
+        private Label label6;
+        private ComboBox comboBox4;
+        private Label label9;
+        private Label label8;
+        private ComboBox comboBox3;
+        private Label label7;
+        private ProgressBar progressBar1;
+        private Button button2;
+        private TextBox textBox2;
+        private ComboBox comboBox2;
+        private Label label5;
+        private Label label4;
+        private ComboBox comboBox1;
+        private Panel panel4;
+        private TreeView treeView1;
+        private Button button3;
     }
 }
