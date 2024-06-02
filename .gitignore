@@ -1,0 +1,8 @@
+# Ignore all .json files
+*.json
+
+# Other rules can be here
+bin/
+obj/
+*.log
+*.tmp
