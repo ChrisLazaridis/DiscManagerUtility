@@ -249,21 +249,46 @@ namespace Disc_Manager_Utility
         // Recursive function to search all nodes
         private void SearchAllNodes(TreeNode<FileSystemItem>? node, string search, List<(TreeNode<FileSystemItem>, string)> results, string currentPath)
         {
-            if (node == null) return;
+            if (node?.Value == null) return;
 
-            if (node.Value.Type == ItemType.File && node.Value.Name == search)
+            // Check if the current node matches the criteria
+            if (node.Value.Name != null && node.Value.Type == ItemType.File && LevenshteinDistance(node.Value.Name, search) <= 2)
             {
-                string filePath = currentPath + Path.DirectorySeparatorChar + node.Value.Name;
+                var filePath = string.IsNullOrEmpty(currentPath) ? node.Value.Name : currentPath + Path.DirectorySeparatorChar + node.Value.Name;
                 results.Add((node, filePath));
             }
 
+            // Recurse into children
+            var newPath = string.IsNullOrEmpty(currentPath) ? node.Value.Name : currentPath + Path.DirectorySeparatorChar + node.Value.Name;
             foreach (var childNode in node.Children)
             {
-                string newPath = currentPath + Path.DirectorySeparatorChar + (node.Value?.Name ?? "");
                 SearchAllNodes(childNode, search, results, newPath);
             }
         }
+        private static int LevenshteinDistance(string s1, string s2)
+        {
+            var d = new int[s1.Length + 1, s2.Length + 1];
+
+            for (var i = 0; i <= s1.Length; i++)
+                d[i, 0] = i;
+
+            for (var j = 0; j <= s2.Length; j++)
+                d[0, j] = j;
+
+            for (var i = 1; i <= s1.Length; i++)
+            {
+                for (var j = 1; j <= s2.Length; j++)
+                {
+                    var cost = (s1[i - 1] == s2[j - 1]) ? 0 : 1;
+                    d[i, j] = Math.Min(Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1), d[i - 1, j - 1] + cost);
+                }
+            }
+
+            return d[s1.Length, s2.Length];
+        }
     }
+
+   
     [Serializable]
     public enum ItemType
     {

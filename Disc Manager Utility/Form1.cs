@@ -140,10 +140,12 @@ namespace Disc_Manager_Utility
             progressBar1.MarqueeAnimationSpeed = 30;
             comboBox1.Enabled = false;
             treeView1.Enabled = false;
+            button3.Enabled = false;
             await Task.Run(() => disc?.ShowDisc(treeView1));
             progressBar1.Visible = false;
             treeView1.Enabled = true;
             comboBox1.Enabled = true;
+            button3.Enabled = true;
             _currentDisc = disc;
             if (!label6.Visible)
             {
@@ -399,6 +401,7 @@ namespace Disc_Manager_Utility
             }
             _discs.Remove(_currentDisc);
             comboBox1.Items.Remove(_currentDisc.Name);
+            comboBox1.Text = "";
             _currentDisc = null;
             treeView1.Nodes.Clear();
             comboBox4.Visible = false;
@@ -407,8 +410,10 @@ namespace Disc_Manager_Utility
             label7.Visible = true;
             progressBar1.Style = ProgressBarStyle.Marquee;
             progressBar1.MarqueeAnimationSpeed = 30;
+            progressBar1.Visible = true;
             SerializeDiscsWithProgress(_discs);
             label7.Visible = false;
+            comboBox4.Visible = false;
             progressBar1.Visible = false;
         }
     }

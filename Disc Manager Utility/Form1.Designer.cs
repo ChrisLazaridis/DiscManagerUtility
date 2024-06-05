@@ -47,6 +47,7 @@
             panel4 = new Panel();
             treeView1 = new TreeView();
             panel3 = new Panel();
+            button3 = new Button();
             label6 = new Label();
             comboBox4 = new ComboBox();
             label9 = new Label();
@@ -60,7 +61,8 @@
             label5 = new Label();
             label4 = new Label();
             comboBox1 = new ComboBox();
-            button3 = new Button();
+            label10 = new Label();
+            label11 = new Label();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             panel2.SuspendLayout();
@@ -124,6 +126,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(label11);
+            panel1.Controls.Add(label10);
             panel1.Controls.Add(progressBar2);
             panel1.Controls.Add(checkBox1);
             panel1.Controls.Add(label3);
@@ -270,6 +274,16 @@
             panel3.Size = new Size(266, 416);
             panel3.TabIndex = 1;
             // 
+            // button3
+            // 
+            button3.Location = new Point(3, 99);
+            button3.Name = "button3";
+            button3.Size = new Size(75, 23);
+            button3.TabIndex = 28;
+            button3.Text = "Delete";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // label6
             // 
             label6.AutoSize = true;
@@ -390,15 +404,23 @@
             comboBox1.TabIndex = 15;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
-            // button3
+            // label10
             // 
-            button3.Location = new Point(3, 99);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 28;
-            button3.Text = "Delete";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            label10.AutoSize = true;
+            label10.Location = new Point(3, 384);
+            label10.Name = "label10";
+            label10.Size = new Size(195, 15);
+            label10.TabIndex = 1;
+            label10.Text = "Copyright © 2024 Christos Lazaridis";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(3, 399);
+            label11.Name = "label11";
+            label11.Size = new Size(129, 15);
+            label11.TabIndex = 19;
+            label11.Text = "clazaridis7@gmail.com";
             // 
             // Form1
             // 
@@ -456,5 +478,7 @@
         private Panel panel4;
         private TreeView treeView1;
         private Button button3;
+        private Label label11;
+        private Label label10;
     }
 }
