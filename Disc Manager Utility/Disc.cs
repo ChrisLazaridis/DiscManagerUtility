@@ -1,4 +1,8 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Disc_Manager_Utility
 {
@@ -13,10 +17,7 @@ namespace Disc_Manager_Utility
             _root = new TreeNode<FileSystemItem>(new FileSystemItem(rootName, ItemType.Directory));
         }
 
-        public Disc()
-        {
-
-        }
+        public Disc() { }
 
         public void AddDirectory(string path)
         {
@@ -66,7 +67,8 @@ namespace Disc_Manager_Utility
                 }
             }
 
-            var newFile = new FileSystemItem(fileName, ItemType.File);
+            var creationDate = File.GetCreationTime(path);
+            var newFile = new FileSystemItem(fileName, ItemType.File, creationDate);
             var newFileNode = new TreeNode<FileSystemItem>(newFile);
             currentNode?.Children.Add(newFileNode);
         }
@@ -202,7 +204,7 @@ namespace Disc_Manager_Utility
             }
         }
 
-        private void ShowNode(TreeNode<FileSystemItem>? node, TreeNodeCollection treeNodeCollection,TreeView tv, int level)
+        private void ShowNode(TreeNode<FileSystemItem>? node, TreeNodeCollection treeNodeCollection, TreeView tv, int level)
         {
             if (node == null) return;
 
@@ -218,26 +220,29 @@ namespace Disc_Manager_Utility
             foreach (var childNode in node.Children)
             {
                 // Recursively add child nodes
-                ShowNode(childNode, treeNode.Nodes,tv, level + 1);
+                ShowNode(childNode, treeNode.Nodes, tv, level + 1);
             }
         }
 
-        //make a fast search algorithm that will return the node whose name is the same as the search string
+        // Make a fast search algorithm that will return the node whose name is the same as the search string
         public TreeNode<FileSystemItem>? SearchNode(TreeNode<FileSystemItem>? node, string search)
         {
             if (node == null) return null;
             return node.Value?.Name == search ? node : node.Children.Select(childNode => SearchNode(childNode, search)).OfType<TreeNode<FileSystemItem>>().FirstOrDefault();
         }
-        // make a fast search algorithm that will return the node whose name is the same as the search string whose date is in between two dates
+
+        // Make a fast search algorithm that will return the node whose name is the same as the search string whose date is in between two dates
         public TreeNode<FileSystemItem>? SearchNode(TreeNode<FileSystemItem>? node, string search, DateTime startDate, DateTime endDate)
         {
             if (node == null) return null;
             return node.Value?.Name == search && node.Value.Date >= startDate && node.Value.Date <= endDate ? node : node.Children.Select(childNode => SearchNode(childNode, search, startDate, endDate)).OfType<TreeNode<FileSystemItem>>().FirstOrDefault();
         }
+
         public TreeNode<FileSystemItem>? Search(string search, bool useDate, DateTime startDate, DateTime endDate)
         {
             return useDate ? SearchNode(_root, search, startDate, endDate) : SearchNode(_root, search);
         }
+
         // Search function to find all matching nodes
         public List<(TreeNode<FileSystemItem>, string)> SearchAll(string search)
         {
@@ -265,6 +270,7 @@ namespace Disc_Manager_Utility
                 SearchAllNodes(childNode, search, results, newPath);
             }
         }
+
         private static int LevenshteinDistance(string s1, string s2)
         {
             var d = new int[s1.Length + 1, s2.Length + 1];
@@ -288,7 +294,6 @@ namespace Disc_Manager_Utility
         }
     }
 
-   
     [Serializable]
     public enum ItemType
     {
@@ -311,15 +316,24 @@ namespace Disc_Manager_Utility
             Type = type;
             Date = DateTime.Now;
         }
+
+        public FileSystemItem(string name, ItemType type, DateTime date)
+        {
+            Name = name;
+            Type = type;
+            Date = date;
+        }
     }
 
     [Serializable]
-    public class TreeNode<T>()
+    public class TreeNode<T>
     {
         public T? Value { get; set; }
         public List<TreeNode<T>> Children { get; set; } = new();
 
-        public TreeNode(T value) : this()
+        public TreeNode() { }
+
+        public TreeNode(T value)
         {
             Value = value;
         }

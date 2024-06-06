@@ -34,6 +34,8 @@
             panel2 = new Panel();
             dataGridView1 = new DataGridView();
             panel1 = new Panel();
+            label11 = new Label();
+            label10 = new Label();
             progressBar2 = new ProgressBar();
             checkBox1 = new CheckBox();
             label3 = new Label();
@@ -61,8 +63,6 @@
             label5 = new Label();
             label4 = new Label();
             comboBox1 = new ComboBox();
-            label10 = new Label();
-            label11 = new Label();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             panel2.SuspendLayout();
@@ -142,6 +142,24 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(205, 416);
             panel1.TabIndex = 1;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(3, 399);
+            label11.Name = "label11";
+            label11.Size = new Size(129, 15);
+            label11.TabIndex = 19;
+            label11.Text = "clazaridis7@gmail.com";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(3, 384);
+            label10.Name = "label10";
+            label10.Size = new Size(195, 15);
+            label10.TabIndex = 1;
+            label10.Text = "Copyright © 2024 Christos Lazaridis";
             // 
             // progressBar2
             // 
@@ -404,24 +422,6 @@
             comboBox1.TabIndex = 15;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(3, 384);
-            label10.Name = "label10";
-            label10.Size = new Size(195, 15);
-            label10.TabIndex = 1;
-            label10.Text = "Copyright © 2024 Christos Lazaridis";
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(3, 399);
-            label11.Name = "label11";
-            label11.Size = new Size(129, 15);
-            label11.TabIndex = 19;
-            label11.Text = "clazaridis7@gmail.com";
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -429,7 +429,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(tabControl1);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Disc Management Utility";
             Load += Form1_Load;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
